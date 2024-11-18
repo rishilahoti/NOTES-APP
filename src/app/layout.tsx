@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { Lexend } from 'next/font/google';
 import './globals.css';
 
-// Use Lexend from Google Fonts
 const lexend = Lexend({
 	subsets: ['latin'],
 	weight: ['400', '500', '600', '700'],
