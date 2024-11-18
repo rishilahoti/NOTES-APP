@@ -1,5 +1,6 @@
-import { Note } from './core/entities/note';
 
+import { Note } from './core/entities/note';
+//@ts-expect-error error
 export const notes: Note[] = globalThis?.notes ?? [
 	{
 		id: '1',
@@ -72,5 +73,7 @@ export const notes: Note[] = globalThis?.notes ?? [
 		createdAt: new Date('2024-11-16T19:55:00Z'),
 	},
 ];
+
+//@ts-expect-error: globalThis might be undefined in some environments
 
 globalThis.notes = notes;
