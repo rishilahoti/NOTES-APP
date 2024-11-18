@@ -27,6 +27,7 @@ const NoteView = ({ note }: { note: Note }) => {
 						{note.content.substring(0, 100)}...
 					</p>
 					<motion.div
+                    //@ts-expect-error error
 						className="mt-4 flex justify-end space-x-2"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}

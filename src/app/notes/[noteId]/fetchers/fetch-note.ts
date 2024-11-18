@@ -1,15 +1,17 @@
-import { getNote } from "@/core/use-cases/get-note.use-case";
-import { unstable_cache } from "next/cache";
-import { notFound } from "next/navigation";
+import { getNote } from '@/core/use-cases/get-note.use-case';
+import { notFound } from 'next/navigation';
 
 export const fetchNote = async (id: string) => {
-  const note = await unstable_cache(getNote, [`note-details/${id}`], {
-    tags: ["note-details", `note-details/${id}`],
-  })({ id });
+	try {
+		const note = await getNote({ id });
 
-  if (!note) {
-    return notFound();
-  }
+		if (!note) {
+			throw notFound(); // Redirects to the 404 page
+		}
 
-  return note;
+		return note;
+	} catch (error) {
+		console.error('Error fetching note:', error);
+		throw notFound(); // Handles any unexpected errors by showing the 404 page
+	}
 };
